@@ -2,6 +2,9 @@
 
 #include "ofMain.h"
 #include "ofxSvg.h"
+#include "ofxShivaVGRenderer.h"
+#include "Circle.h"
+#include "Robot.h"
 
 class ofApp : public ofBaseApp{
 
@@ -21,9 +24,20 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+		void sendPathToRobot(deque<ofPolyline> paths);
 		
-		ofxSVG svg;
+		ofxSVG svg, mutableSvg;
+
+		float strokeWidth, distanceMod;
 
 		vector<ofPoint> points;
-		ofPoint currentLoc;
+		ofPoint homePosition;
+
+		bool debug, d_verticies, b_path;
+		Robot robot;
+
+		ofPtr<ofxShivaVGRenderer> shivaRenderer;
+
+		ofFbo robotPathFbo;
 };
