@@ -107,7 +107,13 @@ void ofApp::setup() {
 				}
 			}
 		}
-		currentLoc = closestPoint;
+		if (path2delete->isClosed()) {
+			currentLoc = closestPoint;
+		}
+		else {
+			currentLoc = bestPath.getVertices().back();
+		}
+		
 		idealPath.push_back(bestPath);
 		int counter = 0;
 		for (int i = 0; i < remainingLines.size(); i++) {
